@@ -1,32 +1,45 @@
-= simple_form_for @recipe, html: { multipart: true } do |f|
-	- if @recipe.errors.any?
-		#errors
-			%p
-				= @recipe.errors.count
-				prevented this recipe from saving
-			%ul
-				- @recipe.errors.full_messages.each do |msg|
-					%li=msg
-	.panel-body
-		= f.input :title, input_html: { class: 'form-control'}
-		= f.input :description, input_html: { class: 'form-control'}
-		= f.input :image, input_html: { class: 'form-control'}
-
-		.row
-			.col-md-6
-				%h3 Ingredients
-				#ingredients
+.row
+	= simple_form_for @recipe, html: { multipart: true } do |f|
+		- if @recipe.errors.any?
+			#errors
+				%p
+					= @recipe.errors.count
+					prevented this recipe from saving
+				%ul
+					- @recipe.errors.full_messages.each do |msg|
+						%li=msg
+		.panel-body
+			= f.input :title, input_html: { class: 'form-control'}
+			= f.input :description, input_html: { class: 'form-control'}
+			= f.input :image, input_html: { class: 'form-control'}
+		.col-md-6
+			%h3 Ingredients
+			%table.table
+				%thead
+					%tr
+						%th.col-sm-2.text-center
+							Qty
+						%th.col-sm-2.text-center
+							Unit
+						%th.col-sm-7.text-center
+							Name
+						%th.col-sm-1.text-center
+				%tbody#ingredients
 					= f.simple_fields_for :ingredients do |ingredient|
 						= render 'ingredient_fields', f: ingredient
-					.links
-						= link_to_add_association 'Add Ingredient', f, :ingredients, class: "btn btn-default add-button"
-
-			.col-md-6
-				%h3 Directions
-				#directions
+			.links
+				= link_to_add_association 'Add Ingredient', f, :ingredients, class: "btn btn-default add-button", :"data-association-insertion-node" => "tbody#ingredients", :"data-association-insertion-method" => "append"
+		.col-md-6
+			%h3 Directions
+			%table.table
+				%thead
+					%tr
+						%th.col-sm-11.text-center
+							Step
+						%th.col-sm-1.text-center
+				%tbody#directions
 					= f.simple_fields_for :directions do |direction|
 						= render 'direction_fields', f: direction
-					.links
-						= link_to_add_association 'Add Step', f, :directions, class: "btn btn-default add-button"
-		
-	= f.button :submit, class: "btn btn-primary"
+			.links
+				= link_to_add_association 'Add Step', f, :directions, class: "btn btn-default add-button", :"data-association-insertion-node" => "tbody#directions", :"data-association-insertion-method" => "append"
+		= f.button :submit, class: "btn btn-primary"

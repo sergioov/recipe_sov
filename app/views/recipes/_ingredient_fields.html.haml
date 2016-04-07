@@ -1,8 +1,5 @@
-.form-inline.clearfix
-	.nested-fields
-		= f.input :quantity, input_html: { class: 'form-input form-control ingredient-qty' }
-		= f.input :unit, input_html: { class: 'form-input form-control ingredient-unit' } 
-		= f.input :name, input_html: { class: 'form-input form-control' }
-	
-		= link_to_remove_association "Remove", f, class: "form-button btn btn-default"
-		
+%tr.nested-fields
+	%td=f.input :quantity, input_html: { class: 'form-input-small form-control ingredient-qty' }, label: false
+	%td=f.input :unit, input_html: { class: 'form-input-small form-control ingredient-unit' }, label: false
+	%td= f.input :name, input_html: { class: 'form-input form-control' }, label: false
+	%td= link_to_remove_association "-", f, class: "form-button btn btn-default"

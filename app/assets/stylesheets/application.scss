@@ -139,7 +139,11 @@ body {
 	margin-top: 15px;
 }
 .form-input {
-	width: 65% !important;
+	width: 100% !important;
+	float: left;
+}
+.form-input-small {
+	width: 100% !important;
 	float: left;
 }
 .form-button {
@@ -149,8 +153,4 @@ body {
 }
 .add-button {
 	margin-top: 25px;
-}
-
-.form-group {
-	display: table-cell;
 }
