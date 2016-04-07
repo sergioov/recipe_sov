@@ -1,5 +1,8 @@
 .form-inline.clearfix
 	.nested-fields
+		= f.input :quantity, input_html: { class: 'form-input form-control ingredient-qty' }
+		= f.input :unit, input_html: { class: 'form-input form-control ingredient-unit' } 
 		= f.input :name, input_html: { class: 'form-input form-control' }
+	
 		= link_to_remove_association "Remove", f, class: "form-button btn btn-default"
 		

@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
+
  */
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -147,4 +149,8 @@ body {
 }
 .add-button {
 	margin-top: 25px;
+}
+
+.form-group {
+	display: table-cell;
 }

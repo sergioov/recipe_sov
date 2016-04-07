@@ -6,6 +6,8 @@
 			#recipe_info
 				%h1= @recipe.title
 				%p.description= @recipe.description
+				%p Submited by
+				=mail_to @recipe.user.email 
 				
 	.row
 		.col-md-6
@@ -18,12 +20,14 @@
 		.col-md-6
 			#directions
 				%h2 Directions
-				%ul
-					- @recipe.directions.each do |direction|
-						%li= direction.step
+				%ol{ "id" => "directions_list", "data-update-url" => sort_directions_recipes_url, 'class' => 'ui-sortable'}
+					- @recipe.directions.sort_by(&:StepNum).each_with_index do |direction, num|
+						= content_tag_for :li, direction, class: "ui-sortable-handle" do
+							%span= direction.step
 
 	.row
 		.col-md-12
 			= link_to "Back", root_path, class: "btn btn-default"
-			= link_to "Edit", edit_recipe_path, class: "btn btn-default"
-			= link_to "Delete", recipe_path, method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-default"
+			- if user_signed_in?	
+				= link_to "Edit", edit_recipe_path, class: "btn btn-default"
+				= link_to "Delete", recipe_path, method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-default"
