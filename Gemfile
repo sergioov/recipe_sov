@@ -53,4 +53,7 @@ gem "paperclip"
 gem "cocoon"
 gem 'devise'
 gem 'jquery-turbolinks'
+gem 'rails_admin'
+gem 'cancancan'
+
 
