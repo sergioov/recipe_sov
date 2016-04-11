@@ -1,0 +1,22 @@
+.row
+	%table.table
+		%thead
+			%tr
+				%th.col-sm-3.text-center
+					Name
+				%th.col-sm-2.text-center
+					Quantity
+				%th.col-sm-2.text-center
+					Unit
+				%th.col-sm-2.text-center
+					Price per unit
+				%th.col-sm-2.text-center
+					Unit type
+		%tbody#items
+			- @items.each do |item|
+				%tr
+					%td= link_to item.name, item
+					%td.text-center= item.quantity
+					%td.text-center= item.unit
+					%td.text-center= item.price_per_unit
+					%td.text-center= item.unit_type
