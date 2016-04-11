@@ -1,0 +1,12 @@
+.row
+	.item-show
+		%p= @item.name
+		%p= @item.quantity
+		%p= @item.unit
+		%p= @item.price_per_unit			
+.row		
+	= link_to "Back", items_path, class: "btn btn-default"
+	- if user_signed_in?	
+		= link_to "Edit", edit_item_path, class: "btn btn-default"
+		= link_to "Delete", item_path, method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-default"
+		
